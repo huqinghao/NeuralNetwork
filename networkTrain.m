@@ -1,9 +1,9 @@
 function [opttheta] = networkTrain(inputSize, hiddenSize,numClasses, lambda, inputData, labels)
 
-%% ³õÊ¼»¯  Obtain random parameters theta
+%% Â³ÃµÃŠÂ¼Â»Â¯  Obtain random parameters theta
 theta = initializeParameters(inputSize, hiddenSize,numClasses);
 
-%% ×îÓÅ»¯ËÑË÷
+%% Ã—Ã®Ã“Ã…Â»Â¯Ã‹Ã‘Ã‹Ã·
 %  Use minFunc to minimize the function
 addpath minFunc/
 options.Method = 'lbfgs'; % Here, we use L-BFGS to optimize our cost
@@ -11,7 +11,7 @@ options.Method = 'lbfgs'; % Here, we use L-BFGS to optimize our cost
                           % need a function pointer with two outputs: the
                           % function value and the gradient. In our problem,
                           % sparseAutoencoderCost.m satisfies this.
-options.maxIter = 10;	  % Maximum number of iterations of L-BFGS to run 
+options.maxIter = 200;	  % Maximum number of iterations of L-BFGS to run 
 options.display = 'on';
 
 [opttheta, cost] = minFunc( @(p) networkCost(p,inputSize, hiddenSize, numClasses,lambda, inputData,labels), ...
